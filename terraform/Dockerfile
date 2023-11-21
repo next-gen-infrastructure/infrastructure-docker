@@ -2,8 +2,9 @@
 # Inspired by
 # https://github.com/cloudbees/java-build-tools-dockerfile/blob/master/Dockerfile
 #################################################################################
-ARG ALPINE_VERSION=3.16
-FROM python:3.10.5-alpine${ALPINE_VERSION} as awscli
+ARG ALPINE_VERSION=3.18
+ARG PYTHON_VERSION=3.9.18
+FROM python:${PYTHON_VERSION}-alpine${ALPINE_VERSION} as awscli
 
 ARG AWS_CLI_VERSION=2.13.37
 RUN \
