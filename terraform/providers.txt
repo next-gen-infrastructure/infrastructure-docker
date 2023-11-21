@@ -1,0 +1,16 @@
+hashicorp:archive:2.4.0
+hashicorp:aws:5.26.0
+hashicorp:cloudinit:2.3.2
+hashicorp:external:2.3.1
+integrations:github:5.42.0
+grafana:grafana:2.6.1
+hashicorp:helm:2.11.0
+loafoe:htpasswd:1.0.4
+hashicorp:http:3.4.0
+hashicorp:kubernetes:2.23.0
+hashicorp:local:2.4.0
+hashicorp:null:3.2.2
+hashicorp:random:3.5.1
+hashicorp:time:0.9.1
+hashicorp:tls:4.0.4
+hashicorp:vault:3.23.0
