@@ -1,11 +1,4 @@
 locals {
-  master_account_id   = "524725240689"
-  backend_bucket      = "cere-io-terraform-states"
-  backend_region      = "us-west-2"
-  backend_locks_table = "cere-terraform-locks"
-}
-
-locals {
   # Automatically load global-level variables
   global_vars = read_terragrunt_config(
     find_in_parent_folders(
@@ -13,6 +6,11 @@ locals {
       "fallback.hcl",
     )
   )
+
+  master_account_id   = local.global_vars.locals.backend.account_id
+  backend_bucket      = local.global_vars.locals.backend.bucket
+  backend_region      = local.global_vars.locals.backend.region
+  backend_locks_table = local.global_vars.locals.backend.locks_table
 
   # Automatically load account-level variables
   account_vars = read_terragrunt_config(

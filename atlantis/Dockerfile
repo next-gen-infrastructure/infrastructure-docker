@@ -31,8 +31,6 @@ ENV TERRAGRUNT_TFPATH="terraform${TERRAFORM_VERSION}"
 ENV TF_PLUGIN_CACHE_MAY_BREAK_DEPENDENCY_LOCK_FILE=true
 ENV DEFAULT_CONFTEST_VERSION=0.35.0
 
-COPY /root/.terraformrc /home/atlantis/
-COPY terragrunt-core-atlantis.hcl /home/atlantis/.terraform.d/terragrunt-core.hcl
 COPY atlantis-config.yaml /etc/atlantis/repos.yaml
 
 COPY --from=tools /usr/local/bin/gosu /usr/local/bin/gosu
