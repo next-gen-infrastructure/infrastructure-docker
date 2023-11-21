@@ -16,7 +16,7 @@ RUN \
 
 
 # Install Atlantis
-FROM cerebellumnetwork/terraform-ci:latest
+FROM ghcr.io/next-gen-infrastructure/terraform-ci:latest
 
 RUN \
     addgroup atlantis && \
