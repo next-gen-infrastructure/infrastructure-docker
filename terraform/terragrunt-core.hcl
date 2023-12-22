@@ -164,9 +164,10 @@ provider "aws" {
 
   default_tags {
     tags = {
-      "environment_name"            = "${local.env_name}"
-      "product"                     = "${local.full_configuration.product_name}"
-      "devops:automation"           = "terraform"
+      "Environment"                 = "${local.env_name}"
+      "Creator"                     = "Terraform"
+      "Terraform"                   = "true"
+      "Owner"                       = "${local.full_configuration.owner}"
       "devops:infrastructure_repo"  = "${local.infrastructure_repository}"
       "devops:terraform_module"     = "${local.terragrunt_module_name}"
     }
@@ -194,7 +195,6 @@ remote_state {
   backend = "s3"
 
   config = {
-    encrypt        = true
     bucket         = local.backend_bucket
     key            = "${local.infrastructure_repository}/${path_relative_to_include()}/terraform.tfstate"
     region         = local.backend_region

@@ -6,7 +6,7 @@ ARG ALPINE_VERSION=3.18
 ARG PYTHON_VERSION=3.9.18
 FROM python:${PYTHON_VERSION}-alpine${ALPINE_VERSION} as awscli
 
-ARG AWS_CLI_VERSION=2.13.37
+ARG AWS_CLI_VERSION=2.15.4
 RUN \
   apk add --no-cache \
     build-base \
@@ -68,7 +68,7 @@ COPY --from=awscli /aws-cli-bin/ /usr/local/bin/
 #=======================================
 # Terraform install
 #=======================================
-ARG TERRAFORM_VERSION=1.6.4
+ARG TERRAFORM_VERSION=1.6.6
 ENV TERRAFORM_VERSION=$TERRAFORM_VERSION
 RUN wget --quiet -O /tmp/terraform.zip \
     "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" \
@@ -81,7 +81,7 @@ RUN wget --quiet -O /tmp/terraform.zip \
 #=======================================
 # Terragrunt install
 #=======================================
-ENV TERRAGRUNT_VERSION=0.53.5
+ENV TERRAGRUNT_VERSION=0.54.10
 RUN wget --quiet -O /tmp/terragrunt \
     "https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64" \
   && chmod +x /tmp/terragrunt \
