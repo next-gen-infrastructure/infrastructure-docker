@@ -1,9 +1,9 @@
 ARG ATLANTIS_VERSION=v0.27.0
 FROM ghcr.io/runatlantis/atlantis:${ATLANTIS_VERSION} AS tools
-
-ARG GOSU_VERSION=1.16
+USER root
+ARG GOSU_VERSION=1.17
 RUN \
-    wget -qO /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64" && \
+    wget -Oq /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64" && \
     chmod +x /usr/local/bin/gosu
 
 # Install infracost
@@ -14,6 +14,7 @@ RUN \
     mv infracost-linux-amd64 /usr/local/bin/infracost && \
     rm -f infracost-linux-amd64.tar.gz
 
+USER atlantis
 
 # Install Atlantis
 FROM ghcr.io/next-gen-infrastructure/terraform-ci:latest
