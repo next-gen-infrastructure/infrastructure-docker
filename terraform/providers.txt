@@ -1,5 +1,5 @@
 hashicorp:archive:2.4.1
-oboukili:argocd:6.0.3 ?
+oboukili:argocd:6.0.3
 hashicorp:aws:5.31.0
 hashicorp:cloudinit:2.3.3
 confluentinc:confluent:1.56.0
