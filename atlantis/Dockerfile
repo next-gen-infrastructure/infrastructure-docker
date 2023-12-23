@@ -3,7 +3,9 @@ FROM ghcr.io/runatlantis/atlantis:${ATLANTIS_VERSION} AS tools
 USER root
 ARG GOSU_VERSION=1.17
 RUN \
-    wget -Oq /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64" && \
+    wget -q \
+      "https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64" \
+      -O /usr/local/bin/gosu && \
     chmod +x /usr/local/bin/gosu
 
 # Install infracost
