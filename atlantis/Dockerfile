@@ -9,7 +9,9 @@ RUN \
 # Install infracost
 ARG INFRACOST_VERSION=v0.10.31
 RUN \
-    wget -qO infracost-linux-amd64.tar.gz "https://github.com/infracost/infracost/releases/download/${INFRACOST_VERSION}/infracost-linux-amd64.tar.gz" && \
+    wget -q \
+      "https://github.com/infracost/infracost/releases/download/${INFRACOST_VERSION}/infracost-linux-amd64.tar.gz" \
+      -O infracost-linux-amd64.tar.gz && \
     tar xzf infracost-linux-amd64.tar.gz && \
     mv infracost-linux-amd64 /usr/local/bin/infracost && \
     rm -f infracost-linux-amd64.tar.gz
