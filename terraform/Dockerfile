@@ -91,12 +91,11 @@ RUN wget --quiet -O /tmp/terragrunt \
 # Terraform providers cache
 #=======================================
 ENV TF_PLUGIN_CACHE_DIR="/usr/share/terraform/providers"
-COPY install-providers.sh /tmp/install-providers.sh
-COPY providers.txt ${TF_PLUGIN_CACHE_DIR}/../
-COPY terraform.rc "${HOME}/.terraformrc"
-RUN /tmp/install-providers.sh \
-  "${TF_PLUGIN_CACHE_DIR}/../providers.txt"
 COPY terragrunt-core.hcl ${TF_PLUGIN_CACHE_DIR}/../
+COPY install-providers.sh "/tmp/install-providers.sh"
+COPY providers.txt "/tmp/providers.txt"
+COPY terraform.rc "/root/.terraformrc"
+RUN /tmp/install-providers.sh "/tmp/providers.txt"
 
 # GOLANG support
 COPY --from=golang:1.19-alpine /usr/local/go/ /usr/local/go/
