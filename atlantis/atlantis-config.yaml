@@ -8,7 +8,6 @@ repos:
     workflow: terragrunt
     allowed_workflows:
       - terragrunt
-#      - terragrunt-run-all
     delete_source_branch_on_merge: true
     repo_locking: false
     post_workflow_hooks:
@@ -83,35 +82,3 @@ workflows:
               cp "${HOME}/.terraform.d/terragrunt-core.hcl" "${DIR/\/${REPO_REL_DIR}/}"
               terragrunt terragrunt apply -input=false $PLANFILE
             fi
-
-#  terragrunt-run-all:
-#    plan:
-#      steps:
-#        - run: |
-#            mkdir -p "/tmp/${BASE_REPO_OWNER}-${BASE_REPO_NAME}-${PULL_NUM}"
-#            if ! [[ "${BASE_BRANCH_NAME}" == "production" || "${BASE_BRANCH_NAME}" == "develop" ]]; then
-#              echo "Environment skipped. Please open a Pull Request to production or develop branch to plan and apply infrastructure changes."
-#              exit 0
-#            elif [[ "${REPO_REL_DIR}" == *"prod"* ]]; then
-#              if ! [[ "${BASE_BRANCH_NAME}" == "production" ]]; then
-#                echo "Environment skipped. Please open a Pull Request to production branch to plan and apply production changes."
-#                exit 0
-#              fi
-#            else
-#              cp "${HOME}/.terraform.d/terragrunt-core.hcl" "${DIR/\/${REPO_REL_DIR}/}"
-#              terragrunt run-all plan -out plan.out"
-#            fi
-#    apply:
-#      steps:
-#        - run: |
-#            if ! [[ "${BASE_BRANCH_NAME}" == "production" || "${BASE_BRANCH_NAME}" == "develop" ]]; then
-#              echo "Environment skipped. Please open a Pull Request to production or develop branch to plan and apply infrastructure changes."
-#              exit 0
-#            elif [[ "${REPO_REL_DIR}" == *"prod"* ]]; then
-#              if ! [[ "${BASE_BRANCH_NAME}" == "production" ]]; then
-#                echo "Environment skipped. Please open a Pull Request to production branch to plan and apply production changes."
-#                exit 0
-#              fi
-#            else
-#              terragrunt run-all apply plan.out --terragrunt-non-interactive
-#            fi

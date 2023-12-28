@@ -26,7 +26,6 @@ FROM ghcr.io/next-gen-infrastructure/terraform-ci:latest
 RUN \
     addgroup atlantis && \
     adduser -S atlantis -G atlantis && \
-    cp -R /root/.terraform.d /home/atlantis/ && \
     cp /root/.terraformrc /home/atlantis/
 
 ENV TF_PLUGIN_CACHE_DIR="/usr/share/terraform/providers"
