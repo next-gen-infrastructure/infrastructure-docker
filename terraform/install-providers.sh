@@ -18,6 +18,7 @@ warning() {
   echo -e "${YELLOW}WARNING: ${1}${NC}"
 }
 
+TF_PLUGIN_CACHE_DIR="/usr/share/terraform/providers"
 PROVIDERS_URL='https://releases.hashicorp.com'
 if [[ "$(uname -p)" == "arm" ]]; then
   PLATFORM="darwin_arm64"

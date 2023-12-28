@@ -29,7 +29,7 @@ RUN \
     cp -R /root/.terraform.d /home/atlantis/ && \
     cp /root/.terraformrc /home/atlantis/
 
-ENV TF_PLUGIN_CACHE_DIR="/home/atlantis/.terraform.d/plugins"
+ENV TF_PLUGIN_CACHE_DIR="/usr/share/terraform/providers"
 ENV ATLANTIS_TERRAFORM_VERSION=${TERRAFORM_VERSION}
 ENV DEFAULT_TERRAFORM_VERSION=$TERRAFORM_VERSION
 ENV TERRAGRUNT_TFPATH="terraform${TERRAFORM_VERSION}"
