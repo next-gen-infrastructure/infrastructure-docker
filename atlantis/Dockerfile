@@ -1,4 +1,4 @@
-ARG ATLANTIS_VERSION=v0.27.0
+ARG ATLANTIS_VERSION=v0.27.1
 FROM ghcr.io/runatlantis/atlantis:${ATLANTIS_VERSION} AS tools
 USER root
 ARG GOSU_VERSION=1.17
@@ -9,7 +9,7 @@ RUN \
     chmod +x /usr/local/bin/gosu
 
 # Install infracost
-ARG INFRACOST_VERSION=v0.10.31
+ARG INFRACOST_VERSION=v0.10.32
 RUN \
     wget -q \
       "https://github.com/infracost/infracost/releases/download/${INFRACOST_VERSION}/infracost-linux-amd64.tar.gz" \
