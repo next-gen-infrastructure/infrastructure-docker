@@ -8,6 +8,7 @@ integrations:github:5.42.0
 grafana:grafana:2.8.0
 hashicorp:helm:2.12.1
 loafoe:htpasswd:1.0.4
+mongodb:mongodbatlas:1.14.0
 hashicorp:http:3.4.1
 hashicorp:kubernetes:2.24.0
 hashicorp:local:2.4.1
