@@ -1,4 +1,15 @@
 ARG ATLANTIS_VERSION=v0.27.1
+FROM node:lts as node
+
+# Build dependencies
+RUN \
+    yarn global add inkdrop-visualizer pkg
+
+WORKDIR /usr/src/app
+
+RUN \
+  pkg -o inkdrop "$(which inkdrop)"
+
 FROM ghcr.io/runatlantis/atlantis:${ATLANTIS_VERSION} AS tools
 USER root
 ARG GOSU_VERSION=1.17
@@ -43,8 +54,14 @@ COPY --from=tools /usr/bin/dumb-init /usr/local/bin/dumb-init
 COPY --from=tools /usr/local/bin/conftest /usr/local/bin/conftest
 COPY --from=tools /usr/local/bin/infracost /usr/local/bin/infracost
 
+COPY --from=node /usr/src/app/inkdrop /usr/local/bin/inkdrop
+
 COPY --from=tools /usr/bin/dumb-init /usr/bin/dumb-init
 COPY --from=tools /usr/local/bin/docker-entrypoint.sh /usr/bin/docker-entrypoint.sh
 
+RUN \
+   atlantis --version \
+   && infracost --version \
+   && inkdrop --version
 ENTRYPOINT ["/usr/bin/docker-entrypoint.sh"]
 CMD ["server"]
