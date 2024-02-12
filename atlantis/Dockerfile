@@ -1,5 +1,5 @@
 ARG ATLANTIS_VERSION=v0.27.1
-FROM node:lts as node
+FROM node:16 as node
 
 # Build dependencies
 RUN \
