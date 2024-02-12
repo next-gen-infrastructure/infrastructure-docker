@@ -60,7 +60,7 @@ COPY --from=tools /usr/bin/dumb-init /usr/bin/dumb-init
 COPY --from=tools /usr/local/bin/docker-entrypoint.sh /usr/bin/docker-entrypoint.sh
 
 RUN \
-   atlantis --version \
+   atlantis version \
    && infracost --version \
    && inkdrop --version
 ENTRYPOINT ["/usr/bin/docker-entrypoint.sh"]
