@@ -18,6 +18,16 @@ RUN \
     mv infracost-linux-amd64 /usr/local/bin/infracost && \
     rm -f infracost-linux-amd64.tar.gz
 
+# Install inkdrop
+ARG INKDROP_VERSION=v1.1.16
+RUN \
+    wget -q \
+      "https://github.com/inkdrop-org/inkdrop-visualizer/releases/download/${INFRACOST_VERSION}/inkdrop-linux-x64.tar.gz" \
+      -O inkdrop-linux-x64.tar.gz && \
+    tar xzf inkdrop-linux-x64.tar.gz && \
+    mv inkdrop /usr/local/bin/inkdrop && \
+    rm -f inkdrop-linux-x64.tar.gz
+
 USER atlantis
 
 # Install Atlantis
@@ -28,9 +38,6 @@ RUN \
     adduser -S atlantis -G atlantis && \
     cp /root/.terraformrc /home/atlantis/
 
-RUN apk add --no-cache nodejs yarn \
-    && yarn global add inkdrop-visualizer
-
 ENV TF_PLUGIN_CACHE_DIR="/usr/share/terraform/providers"
 ENV ATLANTIS_TERRAFORM_VERSION=${TERRAFORM_VERSION}
 ENV DEFAULT_TERRAFORM_VERSION=$TERRAFORM_VERSION
@@ -38,7 +45,6 @@ ENV TERRAGRUNT_TFPATH="terraform${TERRAFORM_VERSION}"
 ENV TF_PLUGIN_CACHE_MAY_BREAK_DEPENDENCY_LOCK_FILE=true
 ENV DEFAULT_CONFTEST_VERSION=0.35.0
 
-#COPY ./atlantis-config.yaml /etc/atlantis/repos.yaml
 COPY --from=tools /usr/local/bin/gosu /usr/local/bin/gosu
 COPY --from=tools /usr/local/bin/atlantis /usr/local/bin/atlantis
 COPY --from=tools /usr/bin/dumb-init /usr/local/bin/dumb-init
