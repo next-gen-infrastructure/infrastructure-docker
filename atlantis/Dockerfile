@@ -22,7 +22,7 @@ RUN \
 ARG INKDROP_VERSION=v1.1.16
 RUN \
     wget -q \
-      "https://github.com/inkdrop-org/inkdrop-visualizer/releases/download/${INFRACOST_VERSION}/inkdrop-linux-x64.tar.gz" \
+      "https://github.com/inkdrop-org/inkdrop-visualizer/releases/download/${INKDROP_VERSION}/inkdrop-linux-x64.tar.gz" \
       -O inkdrop-linux-x64.tar.gz && \
     tar xzf inkdrop-linux-x64.tar.gz && \
     mv inkdrop /usr/local/bin/inkdrop && \
