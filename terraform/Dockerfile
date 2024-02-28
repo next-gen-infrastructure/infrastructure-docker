@@ -68,7 +68,7 @@ COPY --from=awscli /aws-cli-bin/ /usr/local/bin/
 #=======================================
 # Terraform install
 #=======================================
-ARG TERRAFORM_VERSION=1.7.0
+ARG TERRAFORM_VERSION=1.7.4
 ENV TERRAFORM_VERSION=$TERRAFORM_VERSION
 RUN wget --quiet -O /tmp/terraform.zip \
     "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" \
@@ -81,7 +81,7 @@ RUN wget --quiet -O /tmp/terraform.zip \
 #=======================================
 # Terragrunt install
 #=======================================
-ENV TERRAGRUNT_VERSION=0.54.22
+ENV TERRAGRUNT_VERSION=0.55.10
 RUN wget --quiet -O /tmp/terragrunt \
     "https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64" \
   && chmod +x /tmp/terragrunt \
