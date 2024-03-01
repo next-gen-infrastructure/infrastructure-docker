@@ -8,6 +8,16 @@ RUN \
       -O /usr/local/bin/gosu && \
     chmod +x /usr/local/bin/gosu
 
+USER atlantis
+
+# Install Atlantis
+FROM ghcr.io/next-gen-infrastructure/terraform-ci:latest
+
+RUN \
+    addgroup atlantis && \
+    adduser -S atlantis -G atlantis && \
+    cp /root/.terraformrc /home/atlantis/
+
 # Install infracost
 ARG INFRACOST_VERSION=v0.10.33
 RUN \
@@ -21,22 +31,13 @@ RUN \
 # Install inkdrop
 ARG INKDROP_VERSION=v1.1.16
 RUN \
+    apk add --no-cache chromium && \
     wget -q \
-      "https://github.com/inkdrop-org/inkdrop-visualizer/releases/download/${INKDROP_VERSION}/inkdrop-linux-x64.tar.gz" \
+      "https://github.com/inkdrop-org/inkdrop-visualizer/releases/download/${INKDROP_VERSION}/inkdrop-alpine-x64.tar.gz" \
       -O inkdrop-linux-x64.tar.gz && \
     tar xzf inkdrop-linux-x64.tar.gz && \
     mv inkdrop /usr/local/bin/inkdrop && \
     rm -f inkdrop-linux-x64.tar.gz
-
-USER atlantis
-
-# Install Atlantis
-FROM ghcr.io/next-gen-infrastructure/terraform-ci:latest
-
-RUN \
-    addgroup atlantis && \
-    adduser -S atlantis -G atlantis && \
-    cp /root/.terraformrc /home/atlantis/
 
 ENV TF_PLUGIN_CACHE_DIR="/usr/share/terraform/providers"
 ENV ATLANTIS_TERRAFORM_VERSION=${TERRAFORM_VERSION}
@@ -47,9 +48,7 @@ ENV DEFAULT_CONFTEST_VERSION=0.35.0
 
 COPY --from=tools /usr/local/bin/gosu /usr/local/bin/gosu
 COPY --from=tools /usr/local/bin/atlantis /usr/local/bin/atlantis
-COPY --from=tools /usr/bin/dumb-init /usr/local/bin/dumb-init
 COPY --from=tools /usr/local/bin/conftest /usr/local/bin/conftest
-COPY --from=tools /usr/local/bin/infracost /usr/local/bin/infracost
 
 COPY --from=tools /usr/bin/dumb-init /usr/bin/dumb-init
 COPY --from=tools /usr/local/bin/docker-entrypoint.sh /usr/bin/docker-entrypoint.sh
