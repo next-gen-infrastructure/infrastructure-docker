@@ -36,6 +36,7 @@ RUN \
       "https://github.com/inkdrop-org/inkdrop-visualizer/releases/download/${INKDROP_VERSION}/inkdrop-alpine-x64.tar.gz" \
       -O inkdrop-linux-x64.tar.gz && \
     tar xzf inkdrop-linux-x64.tar.gz && \
+    chmod +x inkdrop && \
     mv inkdrop /usr/local/bin/inkdrop && \
     rm -f inkdrop-linux-x64.tar.gz
 
