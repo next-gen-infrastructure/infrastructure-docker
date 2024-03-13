@@ -6,7 +6,7 @@ ARG ALPINE_VERSION=3.18
 ARG PYTHON_VERSION=3.9.18
 FROM python:${PYTHON_VERSION}-alpine${ALPINE_VERSION} as awscli
 
-ARG AWS_CLI_VERSION=2.15.4
+ARG AWS_CLI_VERSION=2.15.28
 RUN \
   apk add --no-cache \
     build-base \
