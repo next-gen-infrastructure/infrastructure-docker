@@ -1,4 +1,4 @@
-ARG ATLANTIS_VERSION=v0.27.1
+ARG ATLANTIS_VERSION=v0.27.2
 FROM ghcr.io/runatlantis/atlantis:${ATLANTIS_VERSION} AS tools
 USER root
 ARG GOSU_VERSION=1.17
@@ -19,7 +19,7 @@ RUN \
     cp /root/.terraformrc /home/atlantis/
 
 # Install infracost
-ARG INFRACOST_VERSION=v0.10.33
+ARG INFRACOST_VERSION=v0.10.34
 RUN \
     wget -q \
       "https://github.com/infracost/infracost/releases/download/${INFRACOST_VERSION}/infracost-linux-amd64.tar.gz" \
@@ -29,7 +29,7 @@ RUN \
     rm -f infracost-linux-amd64.tar.gz
 
 # Install inkdrop
-ARG INKDROP_VERSION=v1.1.16
+ARG INKDROP_VERSION=v1.1.26
 RUN \
     apk add --no-cache chromium && \
     wget -q \
