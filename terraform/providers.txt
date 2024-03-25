@@ -1,12 +1,13 @@
 hashicorp:archive:2.4.2
-oboukili:argocd:6.0.3
-hashicorp:aws:5.41.0
+oboukili:argocd:6.1.0
+hashicorp:aws:5.42.0
 hashicorp:cloudinit:2.3.3
+cloudflare:cloudflare:4.27.0
 confluentinc:confluent:1.67.1
 datadog:datadog:3.38.0
 hashicorp:external:2.3.3
 integrations:github:6.2.0
-grafana:grafana:2.14.2
+grafana:grafana:2.14.3
 hashicorp:helm:2.12.1
 loafoe:htpasswd:1.0.4
 hashicorp:http:3.4.2
@@ -14,8 +15,9 @@ hashicorp:kubernetes:2.27.0
 hashicorp:local:2.5.1
 mongodb:mongodbatlas:1.15.2
 hashicorp:null:3.2.2
+drfaust92:pingdom:1.4.0
 hashicorp:random:3.6.0
 spotinst:spotinst:1.165.0
 hashicorp:time:0.11.1
 hashicorp:tls:4.0.5
-hashicorp:vault:4.0.0
+hashicorp:vault:4.1.0
