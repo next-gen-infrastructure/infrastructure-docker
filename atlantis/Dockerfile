@@ -19,7 +19,7 @@ RUN \
     cp /root/.terraformrc /home/atlantis/
 
 # Install infracost
-ARG INFRACOST_VERSION=v0.10.34
+ARG INFRACOST_VERSION=v0.10.35
 RUN \
     wget -q \
       "https://github.com/infracost/infracost/releases/download/${INFRACOST_VERSION}/infracost-linux-amd64.tar.gz" \
@@ -29,7 +29,7 @@ RUN \
     rm -f infracost-linux-amd64.tar.gz
 
 # Install inkdrop
-ARG INKDROP_VERSION=v1.1.26
+ARG INKDROP_VERSION=v1.1.38
 RUN \
     apk add --no-cache chromium && \
     wget -q \
