@@ -29,7 +29,7 @@ RUN \
     rm -f infracost-linux-amd64.tar.gz
 
 # Install inkdrop
-ARG INKDROP_VERSION=v1.1.38
+ARG INKDROP_VERSION=v1.1.41
 RUN \
     apk add --no-cache chromium && \
     wget -q \
