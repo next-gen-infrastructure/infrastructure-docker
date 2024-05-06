@@ -1,4 +1,4 @@
-ARG ATLANTIS_VERSION=v0.27.2
+ARG ATLANTIS_VERSION=v0.27.3
 FROM ghcr.io/runatlantis/atlantis:${ATLANTIS_VERSION} AS tools
 USER root
 ARG GOSU_VERSION=1.17
@@ -29,7 +29,7 @@ RUN \
     rm -f infracost-linux-amd64.tar.gz
 
 # Install inkdrop
-ARG INKDROP_VERSION=v1.1.41
+ARG INKDROP_VERSION=v1.1.44
 RUN \
     apk add --no-cache chromium && \
     wget -q \

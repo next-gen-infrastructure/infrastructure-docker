@@ -2,11 +2,10 @@
 # Inspired by
 # https://github.com/cloudbees/java-build-tools-dockerfile/blob/master/Dockerfile
 #################################################################################
-ARG ALPINE_VERSION=3.18
-ARG PYTHON_VERSION=3.9.18
-FROM python:${PYTHON_VERSION}-alpine${ALPINE_VERSION} as awscli
+ARG PYTHON_VERSION=3.12.3
+FROM python:${PYTHON_VERSION}-alpine as awscli
 
-ARG AWS_CLI_VERSION=2.15.28
+ARG AWS_CLI_VERSION=2.15.44
 RUN \
   apk add --no-cache \
     build-base \
@@ -81,7 +80,7 @@ RUN wget --quiet -O /tmp/terraform.zip \
 #=======================================
 # Terragrunt install
 #=======================================
-ENV TERRAGRUNT_VERSION=0.57.8
+ENV TERRAGRUNT_VERSION=0.58.2
 RUN wget --quiet -O /tmp/terragrunt \
     "https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64" \
   && chmod +x /tmp/terragrunt \
