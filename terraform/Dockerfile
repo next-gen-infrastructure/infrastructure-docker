@@ -29,7 +29,7 @@ RUN \
   && find /usr/local/aws-cli/v2/current/dist/awscli/data -name 'completions-1*.json' -delete \
   && find /usr/local/aws-cli/v2/current/dist/awscli/botocore/data -name examples-1.json -delete
 
-
+ARG ALPINE_VERSION=3.19
 FROM alpine:${ALPINE_VERSION} as main
 
 ENV LANG=C.UTF-8 \
