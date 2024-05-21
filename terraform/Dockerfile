@@ -80,7 +80,7 @@ RUN wget --quiet -O /tmp/terraform.zip \
 #=======================================
 # Terragrunt install
 #=======================================
-ENV TERRAGRUNT_VERSION=0.58.2
+ENV TERRAGRUNT_VERSION=0.58.8
 RUN wget --quiet -O /tmp/terragrunt \
     "https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64" \
   && chmod +x /tmp/terragrunt \

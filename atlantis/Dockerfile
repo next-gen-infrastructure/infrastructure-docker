@@ -19,7 +19,7 @@ RUN \
     cp /root/.terraformrc /home/atlantis/
 
 # Install infracost
-ARG INFRACOST_VERSION=v0.10.35
+ARG INFRACOST_VERSION=v0.10.36
 RUN \
     wget -q \
       "https://github.com/infracost/infracost/releases/download/${INFRACOST_VERSION}/infracost-linux-amd64.tar.gz" \
