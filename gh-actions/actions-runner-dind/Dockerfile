@@ -9,12 +9,12 @@ USER root
 
 ARG KUBECTL_VERSION=1.30.1
 RUN \
-    curl -LO "https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/${TARGETARCH}/kubectl" \
+    curl -LO "https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/$(uname -m)/kubectl" \
     && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 ARG AWS_CLI_VERSION=2.15.61
 RUN \
-  if [ "${TARGETARCH}" = "arm64" ]; then export TARGETARCH="aarch64"; else export TARGETARCH="x86_64"; fi \
+  if [ "$(uname -m)" = "arm64" ]; then export TARGETARCH="aarch64"; else export TARGETARCH="x86_64"; fi \
   && curl "https://awscli.amazonaws.com/awscli-exe-linux-${TARGETARCH}-${AWS_CLI_VERSION}.zip" -o "awscliv2.zip" \
   && unzip awscliv2.zip \
   && ./aws/install \
@@ -28,7 +28,5 @@ RUN \
 USER runner
 
 RUN \
-  uname -m \
-  && aws --version \
-  && cat /usr/local/bin/kubectl \
+  aws --version \
   && kubectl version --client
