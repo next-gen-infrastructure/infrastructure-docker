@@ -24,4 +24,4 @@ USER runner
 
 RUN \
   aws --version \
-  && kubectl --help
+  && kubectl version --client true
