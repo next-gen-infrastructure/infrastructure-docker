@@ -4,7 +4,7 @@ USER root
 
 ARG KUBECTL_VERSION=1.30.1
 RUN \
-    if [ "$(uname -m)" = "aarch64" ]; then export TARGETARCH="arm64"; else export TARGETARCH="x86_64"; fi \
+    if [ "$(uname -m)" = "aarch64" ]; then export TARGETARCH="arm64"; else export TARGETARCH="amd64"; fi \
     && echo "Downloading from 'https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/${TARGETARCH}/kubectl'" \
     && curl -sLO "https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/${TARGETARCH}/kubectl" \
     && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
