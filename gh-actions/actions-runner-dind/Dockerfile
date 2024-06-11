@@ -1,6 +1,16 @@
-FROM ghcr.io/actions-runner-controller/actions-runner-controller/actions-runner-dind:ubuntu-22.04
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
+ARG TARGETOS
+ARG TARGETARCH
+
+FROM --platform=${BUILDPLATFORM:-linux/amd64} ghcr.io/actions-runner-controller/actions-runner-controller/actions-runner-dind:ubuntu-22.04
 
 USER root
+
+ARG KUBECTL_VERSION=1.30.1
+RUN \
+    curl -LO "https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/${TARGETARCH}/kubectl" \
+    && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 ARG AWS_CLI_VERSION=2.15.61
 RUN \
@@ -15,13 +25,9 @@ RUN \
   && find /usr/local/aws-cli/v2/current/dist/awscli/data -name 'completions-1*.json' -delete \
   && find /usr/local/aws-cli/v2/current/dist/awscli/botocore/data -name examples-1.json -delete
 
-ARG KUBECTL_VERSION=1.29.2
-RUN \
-    curl -LO "https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/${TARGETARCH}/kubectl" \
-    && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-
 USER runner
 
 RUN \
   aws --version \
-  && kubectl version --client true
+  && cat /usr/local/bin/kubectl \
+  && kubectl version --client
