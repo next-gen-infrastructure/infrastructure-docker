@@ -28,6 +28,7 @@ RUN \
 USER runner
 
 RUN \
-  aws --version \
+  uname -m \
+  && aws --version \
   && cat /usr/local/bin/kubectl \
   && kubectl version --client
