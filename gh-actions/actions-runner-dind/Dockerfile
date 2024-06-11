@@ -2,11 +2,11 @@ FROM ghcr.io/actions-runner-controller/actions-runner-controller/actions-runner-
 
 USER root
 
-RUN apt-get update \
-     && apt-get install -y --no-install-recommends \
-        kubectl=1.30.1 \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+ARG KUBECTL_VERSION=1.30.1
+RUN \
+    echo "$(uname -m)" \
+    && curl -sLO "https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/$(uname -m)/kubectl" \
+    && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 ARG AWS_CLI_VERSION=2.15.61
 RUN \
