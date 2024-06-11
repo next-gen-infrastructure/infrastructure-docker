@@ -1,9 +1,4 @@
-ARG TARGETPLATFORM
-ARG BUILDPLATFORM
-ARG TARGETOS
-ARG TARGETARCH
-
-FROM --platform=${BUILDPLATFORM:-linux/amd64} ghcr.io/actions-runner-controller/actions-runner-controller/actions-runner-dind:ubuntu-22.04
+FROM ghcr.io/actions-runner-controller/actions-runner-controller/actions-runner-dind:ubuntu-22.04
 
 USER root
 
