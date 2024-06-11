@@ -21,3 +21,7 @@ RUN \
     && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 USER runner
+
+RUN \
+  aws --version \
+  && kubectl --help
