@@ -4,7 +4,8 @@ USER root
 
 ARG KUBECTL_VERSION=1.30.1
 RUN \
-    curl -sLO "https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/$(uname -m)/kubectl" \
+    echo "$(uname -m)" \
+    && curl -sLO "https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/$(uname -m)/kubectl" \
     && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 ARG AWS_CLI_VERSION=2.15.61
@@ -23,6 +24,5 @@ RUN \
 USER runner
 
 RUN \
-  aws --version \
-  && echo "$TARGETARCH" \
-  && kubectl version --client
+  aws --version # \
+  # && kubectl version --client
