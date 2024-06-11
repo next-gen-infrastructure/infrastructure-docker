@@ -5,7 +5,8 @@ USER root
 ARG KUBECTL_VERSION=1.30.1
 RUN \
     if [ "$(uname -m)" = "aarch64" ]; then export TARGETARCH="arm64"; else export TARGETARCH="x86_64"; fi \
-    && curl -sLO "https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/$(uname -m)/kubectl" \
+    && echo "Downloading from 'https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/${TARGETARCH}/kubectl'" \
+    && curl -sLO "https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/${TARGETARCH}/kubectl" \
     && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 ARG AWS_CLI_VERSION=2.15.61
